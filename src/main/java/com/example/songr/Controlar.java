@@ -6,10 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+
 @Controller
 public class Controlar {
         @Autowired
         AlbumRepository albumRepository;
+        @Autowired
+        SongRepository songRepository;
 
 
         @GetMapping("/hello")
@@ -72,4 +76,21 @@ public class Controlar {
             return  new RedirectView("/");
         }
 
+    @GetMapping("/song/{id}")
+    public String getAlbumbyId(@PathVariable int id, Model m){
+        Album album =albumRepository.findAlbumById(id);
+        List<Song> songs=songRepository.findSongAlbumById(id);
+        m.addAttribute("album", album);
+        m.addAttribute("songs", songs);
+        return "single.html";
     }
+
+    @GetMapping("/addsong/{id}")
+    public String Song(@PathVariable int id, Model m){
+        m.addAttribute("album", id);
+        return "addSong.html";
+    }
+
+
+
+}

@@ -8,8 +8,10 @@ Allows user to add albums and song tracks to the albums.
 * /addAlbums - route will post new album information to the database.
 
 ## SongController.java
-* /songs - route will get all songs and direct to AllSongs.html.
-* /songs - route will add a song to the database
+* /allsongs - route will get all songs and direct to AllSongs.html.
+* /addSong - route will add a song to the database with it album.
+* /addsong{id} - route will pass album to song page to save it to database.
+* /song/{id} - route will Show the songs that belong to an album.
 
 ## To use
 * ./gradlew run
